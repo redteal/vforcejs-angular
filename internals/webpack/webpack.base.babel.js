@@ -32,19 +32,19 @@ module.exports = (options) => ({
       loader: 'style!css?sourceMap!sass',
     }, {
       test: /\.jpe?g$|\.gif$|\.png$/i,
-      loader: 'url?limit=10000&name=public/img/[name].[hash].[ext]',
+      loader: 'url?limit=10000&name=img/[name].[hash].[ext]',
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&name=public/svg/[name].[hash].[ext]&mimetype=image/svg+xml',
+      loader: 'url?limit=10000&name=svg/[name].[hash].[ext]&mimetype=image/svg+xml',
     }, {
       test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&name=public/fonts/[name].[hash].[ext]&mimetype=application/font-woff',
+      loader: 'url?limit=10000&name=fonts/[name].[hash].[ext]&mimetype=application/font-woff',
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&name=public/fonts/[name].[hash].[ext]&mimetype=application/octet-stream',
+      loader: 'url?limit=10000&name=fonts/[name].[hash].[ext]&mimetype=application/octet-stream',
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file?name=public/fonts/[name].[hash].[ext]',
+      loader: 'file?name=fonts/[name].[hash].[ext]',
     }, {
       test: /\.html$/,
       loader: 'html',

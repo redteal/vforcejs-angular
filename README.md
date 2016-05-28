@@ -1,6 +1,6 @@
 # vforcejs-angular
 
-A working template for building an Angular SPA on a Salesforce public site.
+A working template for building a Visualforce+Angular SPA on a Salesforce public site.
 
 ## Features
 
@@ -30,7 +30,7 @@ npm install
 Create the config file. At some point in the future, this will be done through a script.
 But for now it is a manual step.
 
-*/.config.json*
+*<root>/.config.json*
 ```json
 {
   "loginUrl": "https://login.salesforce.com",
@@ -66,7 +66,7 @@ method defined in the Apex controller.
 
 ### Production
 
-Run `npm run build`; *currently, the app doesn't work in this mode because of an incompatibility between base href and async chunk loading; note the 404 of the js chunk on page load.*
+Run `npm run build`
 
 ## Contributing
 

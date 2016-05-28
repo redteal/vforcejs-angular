@@ -27,11 +27,7 @@ apex:page(
 					link(href=url)/
 
 			each file in files.css
-				if opts.dev
-					link(href=file rel='stylesheet')/
-				else
-					- file = file.replace(/^public\//, '');
-					link(href="{!URLFOR($Resource.#{opts.apexPrefix}, '#{file}')}" rel='stylesheet')/
+				link(href=file rel='stylesheet')/
 
 			base(href=opts.baseHref)/
 
@@ -53,11 +49,4 @@ apex:page(
 
 			if files.chunks
 				each chunk in files.chunks
-					if opts.dev
-						script(src="#{chunk.entry}")
-					else
-						- var file = chunk.entry.replace(/^public\//, '');
-						script(src="{!URLFOR($Resource.#{opts.apexPrefix}, '#{file}')}")
-			
-			//- if opts.devServer && opts.dev
-			//- 	script(src='#{opts.devServer}webpack-dev-server.js')
+					script(src="#{chunk.entry}")

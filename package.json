@@ -1,7 +1,7 @@
 {
   "name": "vforcejs-angular",
   "version": "0.1.0",
-  "description": "A working template for building an Angular SPA on a Salesforce public site",
+  "description": "A working template for building a Visualforce+Angular SPA on a Salesforce public site",
   "private": true,
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",

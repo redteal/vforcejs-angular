@@ -1,11 +1,10 @@
 /**
  * MainController
  */
-let VFRemotingService;
-
 export default class MainController {
-  constructor(_VFRemotingService_) {
-    VFRemotingService = _VFRemotingService_;
+  constructor(VFRemotingService) {
+    'ngInject';
+    this.VFRemotingService = VFRemotingService;
   }
 
   get awesomeThings() {
@@ -17,7 +16,7 @@ export default class MainController {
   }
 
   call() {
-    VFRemotingService.myAction(true).then((res) => {
+    this.VFRemotingService.myAction(true).then((res) => {
       console.log(res);
     }).catch((err) => {
       console.error(err);

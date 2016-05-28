@@ -37,6 +37,7 @@ angular.module('app', [
 
   // handle 404s
   $stateProvider.state('404', {
-    templateProvider: ($q) => $q((resolve) => require.ensure([], () => resolve(require('./404.html')))),
+    templateProvider: ($q) =>
+      $q((resolve) => require.ensure([], () => resolve(require('./404.html')))),
   });
 });
