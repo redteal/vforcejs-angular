@@ -1,0 +1,7 @@
+/node_modules
+/build
+/.tmp
+/.sass-cache
+/coverage
+*.log*
+/.config.json

@@ -1,0 +1,63 @@
+- var path = require('path');
+- var opts = htmlWebpackPlugin.options
+- var files = htmlWebpackPlugin.files
+
+doctype xml
+apex:page(
+	controller='#{opts.apexPrefix}Controller'
+	docType='html-5.0'
+	applyHtmlTag='false'
+	applyBodyTag='false'
+	showHeader='false'
+	standardStylesheets='false'
+)
+	html(lang='en')
+		head
+			meta(charset='utf-8')/
+			title= opts.title
+
+			if files.favicon
+				link(rel='shortcut icon' href=files.favicon)/
+
+			if opts.mobile
+				meta(name='viewport' content='width=device-width, initial-scale=1')/
+
+			if opts.cdncss
+				each url in opts.cdncss
+					link(href=url)/
+
+			each file in files.css
+				if opts.dev
+					link(href=file rel='stylesheet')/
+				else
+					- file = file.replace(/^public\//, '');
+					link(href="{!URLFOR($Resource.#{opts.apexPrefix}, '#{file}')}" rel='stylesheet')/
+
+			base(href=opts.baseHref)/
+
+		body(ng-app='app' ng-strict-di='')
+			if opts.appMountId
+				.container
+					ui-view(id=opts.appMountId)
+			else
+				.container
+					ui-view
+
+			if opts.appMountIds && opts.appMountIds.length > 0
+				each mountId in opts.appMountIds
+					div(id=mountId)
+			
+			if opts.cdnjs
+				each url in opts.cdnjs
+					script(src=url)
+
+			if files.chunks
+				each chunk in files.chunks
+					if opts.dev
+						script(src="#{chunk.entry}")
+					else
+						- var file = chunk.entry.replace(/^public\//, '');
+						script(src="{!URLFOR($Resource.#{opts.apexPrefix}, '#{file}')}")
+			
+			//- if opts.devServer && opts.dev
+			//- 	script(src='#{opts.devServer}webpack-dev-server.js')
