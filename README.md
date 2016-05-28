@@ -67,3 +67,7 @@ method defined in the Apex controller.
 ### Production
 
 Run `npm run build`; *currently, the app doesn't work in this mode because of an incompatibility between base href and async chunk loading; note the 404 of the js chunk on page load.*
+
+## Contributing
+
+Pull requests are welcome. Code should pass tests and style guides with no warnings emitted.
