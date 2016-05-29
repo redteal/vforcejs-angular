@@ -6,8 +6,8 @@ A working template for building a Visualforce+Angular SPA on a Salesforce public
 
 - ES2015 (Babel)
 - [Webpack](http://webpack.github.io) (with code-splitting)
-- Angular.js (with lazy loading)
-- Javascript Remoting (Apex)
+- AngularJS 1.x (with lazy loading)
+- Apex Javascript Remoting
 - Hot reloading during development (via [ngrok](https://ngrok.com) proxy)
 - HTML5 URL routing ([angular-ui-router](https://github.com/angular-ui/ui-router))
 - [Karma](https://karma-runner.github.io) unit test runner (with PhantomJS browser)
@@ -30,7 +30,7 @@ npm install
 Create the config file. At some point in the future, this will be done through a script.
 But for now it is a manual step.
 
-*<root>/.config.json*
+*\<root>/.config.json*
 ```json
 {
   "loginUrl": "https://login.salesforce.com",
