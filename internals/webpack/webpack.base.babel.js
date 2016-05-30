@@ -1,6 +1,7 @@
 /**
  * COMMON WEBPACK CONFIGURATION
  */
+require('babel-polyfill');
 
 const path = require('path');
 const webpack = require('webpack');

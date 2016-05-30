@@ -1,11 +1,13 @@
-// Important modules this config uses
+/**
+ * PRODUCTION WEBPACK CONFIGURATION
+ */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SalesforceDeployPlugin = require('./plugins/sfdeploy');
 
-// PostCSS plugins
+// postCSS plugins
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
@@ -22,6 +24,7 @@ const cssLoaderOpts = {
 
 module.exports = require('./webpack.base.babel')({
   entry: [
+    'babel-polyfill',
     path.join(process.cwd(), 'src/app/app.js'),
   ],
 

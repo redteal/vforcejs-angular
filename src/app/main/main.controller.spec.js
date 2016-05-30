@@ -18,7 +18,7 @@ describe('Controller: MainController', () => {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', () => {
-    expect(MainController.awesomeThings).to.have.length.of(3);
+  it('should attach a list of things to the scope', () => {
+    expect(MainController.things).to.have.length.of(4);
   });
 });

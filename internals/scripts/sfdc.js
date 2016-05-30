@@ -4,8 +4,6 @@ const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
 const appConfig = require('../../.config.json');
 
-require('core-js/fn/object/entries');
-
 let logger;
 
 module.exports = class SalesforceDeploy {

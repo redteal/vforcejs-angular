@@ -9,11 +9,11 @@ import 'oclazyload';
 import './main/main.routing';
 import './about/about.routing';
 
-// services, etc
-import '../common/vfremoting/vfremoting';
-
 // primary stylesheet
 import './styles.scss';
+
+// services, etc
+import '../common/vfremoting/vfremoting';
 
 // main module
 angular.module('app', [
@@ -23,7 +23,8 @@ angular.module('app', [
   'main.routing',
   'about.routing',
   'vfremoting',
-]).config(($urlRouterProvider, $stateProvider, $locationProvider) => {
+])
+.config(($urlRouterProvider, $stateProvider, $locationProvider) => {
   'ngInject';
   // set routing locations to use html5-mode URIs; i.e. /post/1
   $locationProvider.html5Mode(true).hashPrefix('!');

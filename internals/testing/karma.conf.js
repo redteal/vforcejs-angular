@@ -1,4 +1,4 @@
-module.exports = function karmaConfig(config) {
+module.exports = (config) => {
   config.set({
     // base path used to resolve all patterns
     basePath: '',
@@ -48,9 +48,6 @@ module.exports = function karmaConfig(config) {
           test: /\.s?css$/,
           loader: 'style!css!sass',
         }],
-      },
-      node: {
-        'core-js': 'empty',
       },
     },
 

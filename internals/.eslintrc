@@ -1,0 +1,11 @@
+parser: babel-eslint
+
+extends:
+  - ../.eslintrc.base.yaml
+
+parserOptions:
+  ecmaVersion: 6
+  sourceType: script
+
+env:
+  browser: false

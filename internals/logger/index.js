@@ -33,7 +33,7 @@ logger.info = (...args) => {
   consoleTransport.eol = os.EOL;
 };
 
-// helpers to display status indicators
+// helpers to log status indicators
 logger.append = (msg) => process.stdout.write(msg);
 logger.ok = () => logger.append(chalk.green(` ✓${os.EOL}`));
 logger.fail = () => logger.append(chalk.red(` ✘${os.EOL}`));

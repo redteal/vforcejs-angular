@@ -17,7 +17,7 @@ describe('Controller: AboutController', () => {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', () => {
-    expect(AboutController.awesomeThings).to.have.length.of(3);
+  it('should attach a list of things to the scope', () => {
+    expect(AboutController.things).to.have.length.of(4);
   });
 });

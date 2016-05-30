@@ -1,15 +1,18 @@
+/* eslint-disable no-console */
 /**
  * MainController
  */
 export default class MainController {
-  constructor(VFRemotingService) {
+  constructor($log, VFRemotingService) {
     'ngInject';
+    this.$log = $log;
     this.VFRemotingService = VFRemotingService;
   }
 
-  get awesomeThings() {
+  get things() {
     return [
-      'HTML5 Boilerplate',
+      'Salesforce',
+      'Webpack',
       'AngularJS',
       'Karma',
     ];
@@ -17,9 +20,9 @@ export default class MainController {
 
   call() {
     this.VFRemotingService.myAction(true).then((res) => {
-      console.log(res);
+      $log.log(res);
     }).catch((err) => {
-      console.error(err);
+      $log.error(err);
     });
   }
 }

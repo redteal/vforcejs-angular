@@ -7,16 +7,14 @@
  * `bundle.js` file for the compressed app source files, when we
  * run our tests, Webpack, likewise, compiles and bundles those tests here.
 */
-
-import 'angular';
-
-// Built by the core Angular team for mocking dependencies
-import 'angular-mocks';
+require('angular');
+require('angular-mocks');
+require('babel-polyfill');
 
 // We use the context method on `require` which Webpack created
 // in order to signify which files we actually want to require or import.
 // Below, `context` will be a/an function/object with file names as keys.
-// Using that regex, we scan within `client/app` and target
+// Using that regex, we scan within `src` and target
 // all files ending with `.spec.js` and trace its path.
 // By passing in true, we permit this process to occur recursively.
 const context = require.context('../../src', true, /\.spec\.js/);

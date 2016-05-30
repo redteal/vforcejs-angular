@@ -1,7 +1,6 @@
 /**
  * DEVELOPMENT WEBPACK CONFIGURATION
  */
-
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -17,6 +16,7 @@ const { appTitle, apexPrefix } = require('../../.config.json');
 module.exports = (url) => require('./webpack.base.babel')({
   // Add hot reloading in development
   entry: [
+    'babel-polyfill',
     'eventsource-polyfill', // Necessary for hot reloading with IE
     `webpack-hot-middleware/client?path=${url}/__webpack_hmr&timeout=20000&reload=true`,
     path.join(process.cwd(), 'src/app/app.js'), // Start with app/app.js

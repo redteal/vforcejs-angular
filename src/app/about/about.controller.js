@@ -2,9 +2,10 @@
  * AboutController
  */
 export default class AboutController {
-  get awesomeThings() {
+  get things() {
     return [
-      'HTML5 Boilerplate',
+      'Salesforce',
+      'Webpack',
       'AngularJS',
       'Karma',
     ];
