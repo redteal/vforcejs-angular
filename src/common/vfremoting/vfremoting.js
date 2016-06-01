@@ -1,4 +1,3 @@
-import angular from 'angular';
 import VFRemotingService from './vfremoting.service';
 import { apexPrefix } from '../../../.config.json';
 

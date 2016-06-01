@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 let deferred;
 
 export default angular.module('about.routing', [])

@@ -1,5 +1,3 @@
-import angular from 'angular';
-
 // angular modules
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';

@@ -58,14 +58,15 @@ module.exports = (options) => ({
     }],
   },
   plugins: options.plugins.concat([
-    // Splits vendor modules (that are required by the app) into its own "vendor" chunk
+    // Splits vendor modules (that are imported in the app) into its own "vendor" chunk
     new SplitByPathPlugin([{
       name: 'vendor',
       path: path.join(process.cwd(), 'node_modules'),
     }]),
     new webpack.ProvidePlugin({
-      // make fetch available
+      // make fetch and angular available globally
       fetch: 'exports?self.fetch!whatwg-fetch',
+      angular: 'exports?self.angular!angular/angular',
     }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`

@@ -1,10 +1,8 @@
-/* eslint-disable no-console */
 /**
  * MainController
  */
 export default class MainController {
   constructor($log, VFRemotingService) {
-    'ngInject';
     this.$log = $log;
     this.VFRemotingService = VFRemotingService;
   }

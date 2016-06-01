@@ -1,16 +1,15 @@
-import { expect } from 'chai';
 import module from './main';
 import VFRemotingService from '../../common/vfremoting/vfremoting.mock';
 
 describe('Controller: MainController', () => {
   // load the controller's module
-  beforeEach(window.module(module.name));
+  beforeEach(angular.mock.module(module.name));
 
   let MainController;
   let scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(window.inject(($controller, $rootScope) => {
+  beforeEach(angular.mock.inject(($controller, $rootScope) => {
     scope = $rootScope.$new();
     MainController = $controller('MainController', {
       $scope: scope,

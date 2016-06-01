@@ -1,14 +1,13 @@
-import { expect } from 'chai';
 import module from './vfremoting';
 
 describe('Service: VFRemotingService', () => {
   // load the service's module
-  beforeEach(window.module(module.name));
+  beforeEach(angular.mock.module(module.name));
 
   // instantiate service
   let instance;
 
-  beforeEach(window.inject((VFRemotingService) => {
+  beforeEach(angular.mock.inject((VFRemotingService) => {
     instance = VFRemotingService;
   }));
 

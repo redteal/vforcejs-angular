@@ -2,7 +2,6 @@ import promisify from '../../lib/promisify';
 
 class VFRemotingService {
   constructor($window, VFController) {
-    'ngInject';
     if (!VFController) {
       return;
     }

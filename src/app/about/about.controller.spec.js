@@ -1,15 +1,14 @@
-import { expect } from 'chai';
 import module from './about';
 
 describe('Controller: AboutController', () => {
   // load the controller's module
-  beforeEach(window.module(module.name));
+  beforeEach(angular.mock.module(module.name));
 
   let AboutController;
   let scope;
 
   // Initialize the controller and a mock scope
-  beforeEach(window.inject(($controller, $rootScope) => {
+  beforeEach(angular.mock.inject(($controller, $rootScope) => {
     scope = $rootScope.$new();
     AboutController = $controller('AboutController', {
       $scope: scope,
