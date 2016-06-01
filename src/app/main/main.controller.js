@@ -20,9 +20,9 @@ export default class MainController {
 
   call() {
     this.VFRemotingService.myAction(true).then((res) => {
-      $log.log(res);
+      this.$log.log(res);
     }).catch((err) => {
-      $log.error(err);
+      this.$log.error(err);
     });
   }
 }
