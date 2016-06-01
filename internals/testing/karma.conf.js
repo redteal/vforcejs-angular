@@ -47,6 +47,9 @@ module.exports = (config) => {
         }, {
           test: /\.s?css$/,
           loader: 'style!css!sass',
+        }, {
+          test: /\.jpe?g$|\.gif$|\.png$/i,
+          loader: 'url?limit=10000&name=img/[name].[hash].[ext]',
         }],
       },
     },

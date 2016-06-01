@@ -1,6 +1,7 @@
 parser: babel-eslint
 
 extends:
+  - angular
   - ../.eslintrc.base.yaml
 
 parserOptions:
@@ -9,3 +10,6 @@ parserOptions:
 
 env:
   browser: false
+
+rules:
+  angular/no-service-method: 0

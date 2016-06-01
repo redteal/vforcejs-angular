@@ -7,6 +7,7 @@ A working template for building a Visualforce+Angular SPA on a Salesforce public
 - ES2015 (Babel)
 - [Webpack](http://webpack.github.io) (with code-splitting)
 - AngularJS 1.x (with lazy loading)
+- Configurable CDN resources
 - Apex Javascript Remoting
 - Hot reloading during development (via [ngrok](https://ngrok.com) proxy)
 - HTML5 URL routing ([angular-ui-router](https://github.com/angular-ui/ui-router))
@@ -15,7 +16,7 @@ A working template for building a Visualforce+Angular SPA on a Salesforce public
 - [FontAwesome](http://fontawesome.io/)
 - [Sass](http://sass-lang.com) stylesheets
 - PostCSS runners ([cssnext](http://cssnext.io), [focus](https://github.com/postcss/postcss-focus))
-- [ESLint](http://eslint.org) and [JSCS](http://jscs.info) syntax checkers
+- [ESLint](http://eslint.org) syntax and code style checks
 
 ## Install
 

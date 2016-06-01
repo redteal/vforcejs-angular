@@ -41,9 +41,18 @@ module.exports = (url) => require('./webpack.base.babel')({
     }),
   ],
 
+  providePlugin: {
+    // make fetch and angular available globally
+    fetch: 'exports?self.fetch!whatwg-fetch',
+    angular: 'exports?self.angular!angular/angular',
+  },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // Tell webpack we want hot reloading
+    // Tell webpack we want hot reloading
+    new webpack.HotModuleReplacementPlugin(),
+
     new webpack.NoErrorsPlugin(),
+
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/templates/angular.page.jade',
@@ -54,6 +63,7 @@ module.exports = (url) => require('./webpack.base.babel')({
       appMountId: 'root',
       dev: true,
     }),
+
     new HtmlWebpackPlugin({
       filename: `${apexPrefix}.page`,
       template: 'src/templates/angular.page.jade',
@@ -63,6 +73,7 @@ module.exports = (url) => require('./webpack.base.babel')({
       baseHref: '{!$Site.Prefix}/',
       dev: true,
     }),
+
     new SalesforceDeployPlugin({
       bundle: false,
     }),

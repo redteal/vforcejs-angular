@@ -63,11 +63,7 @@ module.exports = (options) => ({
       name: 'vendor',
       path: path.join(process.cwd(), 'node_modules'),
     }]),
-    new webpack.ProvidePlugin({
-      // make fetch and angular available globally
-      fetch: 'exports?self.fetch!whatwg-fetch',
-      angular: 'exports?self.angular!angular/angular',
-    }),
+    new webpack.ProvidePlugin(options.providePlugin),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; UglifyJS will automatically

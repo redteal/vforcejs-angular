@@ -9,14 +9,8 @@
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p",
     "start": "npm run start:tunnel",
     "start:tunnel": "cross-env NODE_ENV=development node internals/server",
-    "lint": "npm run lint:js",
-    "lint:js": "npm run lint:eslint && npm run lint:jscs",
-    "lint:js:staged": "npm run lint:eslint:staged && npm run lint:jscs:staged",
-    "lint:eslint": "eslint . --ignore-path .gitignore",
-    "lint:eslint:staged": "eslint-staged",
-    "lint:jscs": "jscs .",
-    "lint:jscs:staged": "jscs-staged",
-    "lint:staged": "npm run lint:js:staged",
+    "lint": "eslint . --ignore-path .gitignore",
+    "lint:staged": "eslint-staged",
     "pretest": "npm run lint",
     "test": "cross-env NODE_ENV=test karma start internals/testing/karma.conf.js --single-run",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
@@ -42,6 +36,7 @@
     "angular-touch": "^1.5.5",
     "angular-ui-bootstrap": "^1.3.3",
     "angular-ui-router": "^0.3.0",
+    "angular-ui-router-styles": "0.0.6",
     "bootstrap-sass": "^3.3.6",
     "font-awesome": "^4.6.3",
     "immutable": "^3.8.1",
@@ -50,6 +45,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
+    "angular-es6": "^3.0.5",
     "angular-mocks": "^1.5.5",
     "archiver": "^1.0.0",
     "async": "^2.0.0-rc.5",
@@ -121,26 +117,19 @@
     "webpack-split-by-path": "0.0.8",
     "winston": "^2.2.0"
   },
+  "cdnDependencies": {
+    "js": {
+      "angular": {
+        "url": "//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js",
+        "variable": "angular"
+      }
+    },
+    "css": {}
+  },
   "babel": {
     "presets": [
       "es2015",
       "stage-0"
-    ]
-  },
-  "jscsConfig": {
-    "preset": "airbnb",
-    "validateQuoteMarks": null,
-    "requireTrailingComma": null,
-    "maximumLineLength": null,
-    "maxErrors": null,
-    "requireCamelCaseOrUpperCaseIdentifiers": null,
-    "requireShorthandArrowFunctions": null,
-    "requirePaddingNewLinesBeforeLineComments": null,
-    "requirePaddingNewLinesAfterBlocks": null,
-    "excludeFiles": [
-      "build/**",
-      "coverage/**",
-      "node_modules/**"
     ]
   }
 }

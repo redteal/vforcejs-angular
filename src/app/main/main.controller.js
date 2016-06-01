@@ -2,9 +2,25 @@
  * MainController
  */
 export default class MainController {
-  constructor($log, VFRemotingService) {
+
+  constructor($scope, $q, $log, VFRemotingService) {
+    'ngInject';
+    this.$scope = $scope;
+    this.$q = $q;
     this.$log = $log;
     this.VFRemotingService = VFRemotingService;
+
+    this.$scope.count = 0;
+  }
+
+  call() {
+    return this.VFRemotingService.myAction(true).then((res) => {
+      this.$log.log(res);
+      this.$scope.count += 1;
+      this.$scope.$apply();
+    }).catch((err) => {
+      this.$log.error(err);
+    });
   }
 
   get things() {
@@ -14,13 +30,5 @@ export default class MainController {
       'AngularJS',
       'Karma',
     ];
-  }
-
-  call() {
-    this.VFRemotingService.myAction(true).then((res) => {
-      this.$log.log(res);
-    }).catch((err) => {
-      this.$log.error(err);
-    });
   }
 }

@@ -22,9 +22,9 @@ apex:page(
 			if opts.mobile
 				meta(name='viewport' content='width=device-width, initial-scale=1')/
 
-			if opts.cdncss
-				each url in opts.cdncss
-					link(href=url)/
+			if opts.cdn && opts.cdn.css
+				each url in opts.cdn.css
+					link(href=url rel='stylesheet')/
 
 			each file in files.css
 				link(href=file rel='stylesheet')/
@@ -32,20 +32,19 @@ apex:page(
 			base(href=opts.baseHref)/
 
 		body(ng-app='app' ng-strict-di='')
-			if opts.appMountId
-				.container
-					ui-view(id=opts.appMountId)
-			else
-				.container
-					ui-view
+			.container
+				if opts.appMountId
+					ui-view(id=opts.appMountId)/
+				else
+					ui-view/
 
 			if opts.appMountIds && opts.appMountIds.length > 0
 				each mountId in opts.appMountIds
 					div(id=mountId)
 			
-			if opts.cdnjs
-				each url in opts.cdnjs
-					script(src=url)
+			if opts.cdn && opts.cdn.js
+				each jsconf in opts.cdn.js
+					script(src=jsconf.url)
 
 			if files.chunks
 				each chunk in files.chunks

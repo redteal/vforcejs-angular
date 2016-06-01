@@ -10,3 +10,10 @@ $fa-font-path: '~font-awesome/fonts';
 body {
   margin: 10px;
 }
+
+.about {
+  .kitten {
+    @extend .img-responsive;
+    @extend .img-thumbnail;
+  }
+}

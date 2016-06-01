@@ -13,6 +13,7 @@ const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 
 const { appTitle, apexPrefix } = require('../../.config.json');
+const pkg = require('../../package.json');
 
 const cssLoaderOpts = {
   importLoaders: true,
@@ -21,6 +22,15 @@ const cssLoaderOpts = {
   },
   sourceMap: true,
 };
+
+// register external (cdn) dependencies
+const externals = {};
+if (pkg.cdnDependencies && pkg.cdnDependencies.js) {
+  Object.keys(pkg.cdnDependencies.js).forEach((name) => {
+    const jsconf = pkg.cdnDependencies.js[name];
+    externals[name] = jsconf.variable;
+  });
+}
 
 module.exports = require('./webpack.base.babel')({
   entry: [
@@ -40,7 +50,6 @@ module.exports = require('./webpack.base.babel')({
   cssLoaders: ExtractTextPlugin.extract(
     'style', `css?${JSON.stringify(cssLoaderOpts)}!postcss!sass`
   ),
-  devtool: 'source-map',
 
   postcssPlugins: [
     postcssFocus(),
@@ -51,6 +60,12 @@ module.exports = require('./webpack.base.babel')({
       clearMessages: true,
     }),
   ],
+
+  providePlugin: {
+    // make fetch and angular available globally
+    fetch: 'exports?self.fetch!whatwg-fetch',
+  },
+
   plugins: [
     // OccurrenceOrderPlugin is needed for long-term caching to work properly.
     // See http://mxs.is/googmv
@@ -75,6 +90,7 @@ module.exports = require('./webpack.base.babel')({
       title: appTitle,
       apexPrefix,
       baseHref: '{!$Site.Prefix}/',
+      cdn: pkg.cdnDependencies,
     }),
 
     // Extract the CSS into a seperate file
@@ -82,4 +98,6 @@ module.exports = require('./webpack.base.babel')({
 
     new SalesforceDeployPlugin(),
   ],
+  externals: externals,
+  devtool: 'source-map',
 });
