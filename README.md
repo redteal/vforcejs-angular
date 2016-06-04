@@ -1,17 +1,18 @@
 # vforcejs-angular
 
-A working template for building a Visualforce+Angular SPA on a Salesforce public site.
+A working template for building a Visualforce+Angular SPA on a Salesforce public
+site. Attempts to follow the [Angular 1.x Style Guide][style-guide] as closely as possible.
 
 ## Features
 
 - ES2015 (Babel)
-- [Webpack](http://webpack.github.io) (with code-splitting)
-- AngularJS 1.x (with lazy loading)
+- [Webpack] (with code-splitting examples)
+- AngularJS 1.x
 - Configurable CDN resources
-- Apex Javascript Remoting
+- Promisified Apex Javascript Remoting
 - Hot reloading during development (via [ngrok](https://ngrok.com) proxy)
 - HTML5 URL routing ([angular-ui-router](https://github.com/angular-ui/ui-router))
-- [Karma](https://karma-runner.github.io) unit test runner (with PhantomJS browser)
+- [Jasmine](http://jasmine.github.io/) test framework and [Karma](https://karma-runner.github.io) runner
 - [Twitter Bootstrap](http://getbootstrap.com)
 - [FontAwesome](http://fontawesome.io/)
 - [Sass](http://sass-lang.com) stylesheets
@@ -31,16 +32,21 @@ npm install
 Create the config file. At some point in the future, this will be done through a script.
 But for now it is a manual step.
 
-*\<root>/.config.json*
+*\<root>/.jsforce.config.json*
 ```json
 {
   "loginUrl": "https://login.salesforce.com",
   "username": "<username>",
   "password": "<password>",
-  "token": "<security token>",
+  "token": "<security token>"
+}
+```
+*\<root>/.config.json*
+```json
+{
   "appTitle": "<page title of app>",
-  "sitePrefix": "<site path prefix; eg: vforcejs>",
-  "apexPrefix": "<prefix of controller, page, and static resource; eg: VForceJS>"
+  "sitePrefix": "<site path prefix; eg. vforcejs>",
+  "apexPrefix": "<prefix of controller, page, and static resource; eg. VForceJS>"
 }
 ```
 
@@ -60,15 +66,38 @@ Run `npm start`
 
 Open your **public** Salesforce site.
 
-Webpack will watch for changes and automatically hot-reload the page during development.
+Webpack will watch for changes and automatically hot-reload the page during
+development.
 
-**Note**: there's currently a "myAction" link that assumes that there is a "myAction" `@RemoteAction`
-method defined in the Apex controller.
+**Note** there's a "Next Fib" button that makes a remote action call, and assumes
+there is a "nextFib" `@RemoteAction` method defined in the Apex controller. This
+is only for demonstration purposes.
+
+```java
+global with sharing class VForceJSController {
+
+	@RemoteAction
+	global static Double nextFib(Prev prev) {
+		Double a = prev.a, b = prev.b;
+		return a == null ? 1 : a + b;
+	}
+
+	global class Prev {
+		global Double a;
+		global Double b;
+	}
+}
+```
 
 ### Production
 
-Run `npm run build`
+Run `npm run build`. Builds and deploys page and resource bundle.
 
 ## Contributing
 
-Pull requests are welcome. Code should pass tests and style guides with no warnings emitted.
+Pull requests are welcome! Code should pass tests and the ESLint style guide,
+preferably with no warnings emitted.
+
+
+[style-guide]: https://github.com/johnpapa/angular-styleguide/tree/master/a1
+[Webpack]: http://webpack.github.io

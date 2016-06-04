@@ -12,7 +12,7 @@ const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 
-const { appTitle, apexPrefix } = require('../../.config.json');
+const { sitePrefix, appTitle, apexPrefix } = require('../../.config.json');
 const pkg = require('../../package.json');
 
 const cssLoaderOpts = {
@@ -40,7 +40,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    publicPath: `resource/${apexPrefix}/`,
+    publicPath: `/${sitePrefix}/resource/${apexPrefix}/`,
     filename: 'js/[name].[chunkhash].js',
     chunkFilename: 'js/[name].chunk.[chunkhash].js',
   },
@@ -85,7 +85,7 @@ module.exports = require('./webpack.base.babel')({
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       filename: `${apexPrefix}.page`,
-      template: 'src/templates/angular.page.jade',
+      template: 'src/app/index.jade',
       inject: false,
       title: appTitle,
       apexPrefix,
@@ -98,6 +98,6 @@ module.exports = require('./webpack.base.babel')({
 
     new SalesforceDeployPlugin(),
   ],
-  externals: externals,
+  externals,
   devtool: 'source-map',
 });

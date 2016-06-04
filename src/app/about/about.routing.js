@@ -1,24 +1,12 @@
-let deferred;
+import './';
 
-export default angular.module('about.routing', [])
-  .config(($urlRouterProvider, $stateProvider) => {
+export default angular.module('about.routing', ['about'])
+  .config(($stateProvider) => {
     'ngInject';
     $stateProvider.state('about', {
       url: '/about',
-      templateProvider: () => deferred.promise,
+      parent: 'root',
+      template: require('./about.html'),
       controller: 'AboutController as vm',
-      resolve: {
-        load: ($q, $ocLazyLoad) => {
-          deferred = $q.defer();
-          $q((resolve) => {
-            require.ensure([], () => {
-              const module = require('./about').default;
-              $ocLazyLoad.load({ name: module.name });
-              resolve(module);
-              deferred.resolve(require('./about.html'));
-            });
-          });
-        },
-      },
     });
   });

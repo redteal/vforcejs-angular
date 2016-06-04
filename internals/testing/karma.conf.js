@@ -1,15 +1,18 @@
+/**
+ * KARMA CONFIGURATION
+ */
 module.exports = (config) => {
   config.set({
     // base path used to resolve all patterns
-    basePath: '',
+    basePath: process.cwd(),
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['jasmine'],
 
     // list of files/patterns to load in the browser
     files: [{
-      pattern: 'spec.bundle.js',
+      pattern: 'internals/testing/spec.bundle.js',
       watched: false,
     }],
 
@@ -17,10 +20,9 @@ module.exports = (config) => {
     exclude: [],
 
     plugins: [
-      require('karma-chai'),
+      require('karma-jasmine'),
       require('karma-phantomjs-launcher'),
-      require('karma-mocha'),
-      require('karma-mocha-reporter'),
+      require('karma-spec-reporter'),
       require('karma-sourcemap-loader'),
       require('karma-webpack'),
     ],
@@ -28,7 +30,7 @@ module.exports = (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec.bundle.js': ['webpack', 'sourcemap'],
+      'internals/testing/spec.bundle.js': ['webpack', 'sourcemap'],
     },
 
     webpack: {
@@ -59,7 +61,7 @@ module.exports = (config) => {
     },
 
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['spec'],
 
     // web server port
     port: 9876,
@@ -68,7 +70,7 @@ module.exports = (config) => {
     colors: true,
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: LOG_DISABLE, LOG_ERROR, LOG_WARN, LOG_INFO, LOG_DEBUG
     logLevel: config.LOG_INFO,
 
     // toggle whether to watch files and rerun tests upon incurring changes

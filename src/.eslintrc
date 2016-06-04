@@ -1,15 +1,1 @@
-parser: babel-eslint
-
-extends:
-  - angular
-  - ../.eslintrc.base.yaml
-
-parserOptions:
-  ecmaVersion: 6
-  sourceType: module
-
-env:
-  browser: false
-
-rules:
-  angular/no-service-method: 0
+extends: redteal/angular

@@ -1,6 +1,8 @@
-<div class="main row">
-  <p>This is the main page!</p>
-  <a ui-sref="about">About</a>
-  <br/>
-  <a href="javascript://" ng-click="vm.call()">myAction</a> {{count}}
+<div class="main jumbotron">
+  <h1>Hello, world!</h1>
+  <p>vm.fib = {{ fib }}</p>
+  <p>
+    <a class="btn btn-primary btn-lg" ng-click="vm.next()" role="button">Next Fib</a>
+    <a class="btn btn-link btn-lg" ng-click="vm.reset()" role="button">Reset</a>
+  </p>
 </div>

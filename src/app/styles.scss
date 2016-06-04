@@ -1,19 +1,25 @@
-// load bootstrap scss
+// load bootstrap styles
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 $bootstrap-sass-asset-helper: false;
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
-// load font-awesome scss
+// load font-awesome styles
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome.scss';
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 body {
-  margin: 10px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+footer {
+  @import './footer/styles.scss';
 }
 
 .about {
-  .kitten {
-    @extend .img-responsive;
-    @extend .img-thumbnail;
-  }
+  @import './about/styles.scss';
 }

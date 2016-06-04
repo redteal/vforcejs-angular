@@ -7,9 +7,9 @@
  * `bundle.js` file for the compressed app source files, when we
  * run our tests, Webpack, likewise, compiles and bundles those tests here.
 */
-require('angular');
-require('angular-mocks');
-require('babel-polyfill');
+import 'angular';
+import 'angular-mocks';
+import 'babel-polyfill';
 
 // We use the context method on `require` which Webpack created
 // in order to signify which files we actually want to require or import.
@@ -17,7 +17,7 @@ require('babel-polyfill');
 // Using that regex, we scan within `src` and target
 // all files ending with `.spec.js` and trace its path.
 // By passing in true, we permit this process to occur recursively.
-const context = require.context('../../src', true, /\.spec\.js/);
+const context = require.context('../../src', true, /\.spec\.js$/);
 
 // Get all files, for each file, call the context function
 // that will require the file and load it here. Context will

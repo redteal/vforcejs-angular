@@ -3,13 +3,9 @@ import kitten from '../../assets/img/kitten.jpg';
  * AboutController
  */
 export default class AboutController {
-  constructor($scope) {
-    'ngInject';
-    $scope.kitten = kitten;
-  }
-
-  get things() {
-    return [
+  constructor() {
+    this.kitten = kitten;
+    this.things = [
       'Salesforce',
       'Webpack',
       'AngularJS',

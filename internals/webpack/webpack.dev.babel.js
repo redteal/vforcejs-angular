@@ -55,7 +55,7 @@ module.exports = (url) => require('./webpack.base.babel')({
 
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/templates/angular.page.jade',
+      template: 'src/app/index.jade',
       inject: false,
       title: appTitle,
       apexPrefix,
@@ -66,7 +66,7 @@ module.exports = (url) => require('./webpack.base.babel')({
 
     new HtmlWebpackPlugin({
       filename: `${apexPrefix}.page`,
-      template: 'src/templates/angular.page.jade',
+      template: 'src/app/index.jade',
       inject: false,
       title: appTitle,
       apexPrefix,

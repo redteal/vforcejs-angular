@@ -2,7 +2,8 @@ const async = require('async');
 const jsforce = require('jsforce');
 const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
-const appConfig = require('../../.config.json');
+const appConfig = require('../../.jsforce.config.json');
+const { apexPrefix } = require('../../.config.json');
 
 let logger;
 
@@ -52,7 +53,6 @@ module.exports = class SalesforceDeploy {
         archive.finalize();
       },
       deploy: (bundle, done) => {
-        const { apexPrefix } = appConfig;
         const metadata = {
           fullName: apexPrefix,
           contentType: 'application/zip',
@@ -69,7 +69,6 @@ module.exports = class SalesforceDeploy {
   }
 
   page(conn, asset, done) {
-    const { apexPrefix } = appConfig;
     logger.info(`Deploying ${apexPrefix}.page... `, { newline: false });
     conn.metadata.upsert('ApexPage', {
       fullName: apexPrefix,

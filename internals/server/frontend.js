@@ -19,7 +19,8 @@ module.exports = (options) => {
   logger.info('Starting Webpack server... ', { newline: false });
   app.listen((err) => {
     if (err) {
-      return logger.error(err);
+      logger.error(err);
+      return;
     }
     app.use(middleware);
     app.use(webpackHotMiddleware(compiler, {

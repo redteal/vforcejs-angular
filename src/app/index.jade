@@ -32,15 +32,10 @@ apex:page(
 			base(href=opts.baseHref)/
 
 		body(ng-app='app' ng-strict-di='')
-			.container
-				if opts.appMountId
-					ui-view(id=opts.appMountId)/
-				else
-					ui-view/
-
-			if opts.appMountIds && opts.appMountIds.length > 0
-				each mountId in opts.appMountIds
-					div(id=mountId)
+		
+			header(ui-view='header')
+			.container(ui-view='root' id=opts.appMountId)
+			footer(ui-view='footer')
 			
 			if opts.cdn && opts.cdn.js
 				each jsconf in opts.cdn.js

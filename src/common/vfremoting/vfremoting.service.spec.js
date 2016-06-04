@@ -1,17 +1,15 @@
-import module from './vfremoting';
+import { name as moduleName } from './';
 
 describe('Service: VFRemotingService', () => {
-  // load the service's module
-  beforeEach(angular.mock.module(module.name));
+  beforeEach(angular.mock.module(moduleName));
 
-  // instantiate service
-  let instance;
+  let bool = false;
 
-  beforeEach(angular.mock.inject((VFRemotingService) => {
-    instance = VFRemotingService;
-  }));
+  beforeEach(() => {
+    bool = true;
+  });
 
-  it('should be instantiated', () => {
-    expect(instance).to.be.ok;
+  it('should be true', () => {
+    expect(bool).toEqual(true);
   });
 });

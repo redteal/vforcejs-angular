@@ -1,22 +1,15 @@
-import module from './about';
+import { name as moduleName } from './';
 
 describe('Controller: AboutController', () => {
-  // load the controller's module
-  beforeEach(angular.mock.module(module.name));
+  beforeEach(angular.mock.module(moduleName));
 
-  let AboutController;
-  let scope;
+  let bool = false;
 
-  // Initialize the controller and a mock scope
-  beforeEach(angular.mock.inject(($controller, $rootScope) => {
-    scope = $rootScope.$new();
-    AboutController = $controller('AboutController', {
-      $scope: scope,
-      // place here mocked dependencies
-    });
-  }));
+  beforeEach(() => {
+    bool = true;
+  });
 
-  it('should attach a list of things to the scope', () => {
-    expect(AboutController.things).to.have.length.of(4);
+  it('should be true', () => {
+    expect(bool).toEqual(true);
   });
 });

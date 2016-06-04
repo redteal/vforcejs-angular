@@ -5,3 +5,4 @@
 /coverage
 *.log*
 /.config.json
+/.jsforce.config.json
