@@ -91,6 +91,7 @@ module.exports = require('./webpack.base.babel')({
       apexPrefix,
       baseHref: '{!$Site.Prefix}/',
       cdn: pkg.cdnDependencies,
+      mobile: true,
     }),
 
     // Extract the CSS into a seperate file

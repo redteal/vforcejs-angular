@@ -1,11 +1,6 @@
-// load bootstrap styles
-$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-$bootstrap-sass-asset-helper: false;
-@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import '../common/styles.scss';
 
-// load font-awesome styles
-$fa-font-path: '~font-awesome/fonts';
-@import '~font-awesome/scss/font-awesome.scss';
+$footer_height: 60px;
 
 html {
   position: relative;
@@ -13,7 +8,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: $footer_height;
 }
 
 footer {

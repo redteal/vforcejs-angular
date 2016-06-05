@@ -1,6 +1,8 @@
 .container
-  p.text-muted
+  .text-muted
     copyright
       i(class='fa fa-copyright')
       | &nbsp;{{ vm.date | date: 'yyyy' }} {{ vm.author }}
-    span.pull-right Powered by vforcejs-angular
+    br/
+    span
+      | Powered by vforcejs-angular

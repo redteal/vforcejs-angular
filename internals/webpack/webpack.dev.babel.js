@@ -62,6 +62,7 @@ module.exports = (url) => require('./webpack.base.babel')({
       ngrokurl: `${url}/`,
       appMountId: 'root',
       dev: true,
+      mobile: true,
     }),
 
     new HtmlWebpackPlugin({
@@ -72,6 +73,7 @@ module.exports = (url) => require('./webpack.base.babel')({
       apexPrefix,
       baseHref: '{!$Site.Prefix}/',
       dev: true,
+      mobile: true,
     }),
 
     new SalesforceDeployPlugin({

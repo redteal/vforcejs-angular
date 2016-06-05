@@ -3,6 +3,8 @@
 A working template for building a Visualforce+Angular SPA on a Salesforce public
 site. Attempts to follow the [Angular 1.x Style Guide][style-guide] as closely as possible.
 
+[Demo](https://vforcejs-developer-edition.na30.force.com/vforcejs)
+
 ## Features
 
 - ES2015 (Babel)
