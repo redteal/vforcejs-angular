@@ -2,6 +2,7 @@
  * PRODUCTION WEBPACK CONFIGURATION
  */
 const path = require('path');
+const slash = require('slash');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -40,7 +41,7 @@ module.exports = require('./webpack.base.babel')({
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
-    publicPath: `/${sitePrefix}/resource/${apexPrefix}/`,
+    publicPath: slash(path.join('/', sitePrefix, 'resource', apexPrefix, '/')),
     filename: 'js/[name].[chunkhash].js',
     chunkFilename: 'js/[name].chunk.[chunkhash].js',
   },
