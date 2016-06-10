@@ -1,20 +1,25 @@
 const async = require('async');
+const fs = require('fs');
+const path = require('path');
 const jsforce = require('jsforce');
 const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
+const Mustache = require('mustache');
 const appConfig = require('../../.jsforce.config.json');
-const { apexPrefix } = require('../../.config.json');
+const { apiVersion, apexPrefix, appTitle } = require('../../.config.json');
 
 let logger;
 
 module.exports = class SalesforceDeploy {
   constructor(_logger) {
     logger = _logger;
+    this.rootPath = process.cwd();
   }
 
   connect() {
     return new jsforce.Connection({
       loginUrl: appConfig.loginUrl,
+      version: apiVersion,
     });
   }
 
@@ -68,13 +73,44 @@ module.exports = class SalesforceDeploy {
     }, done);
   }
 
+  classes(conn, metadata, done) {
+    conn.metadata.list({ type: 'ApexClass' }, (err, res) => {
+      let names = new Set(res.map(md => md.fullName));
+      const data = metadata.filter(md => !names.has(md.name));
+      names = data.map(md => md.name);
+      const content = data.map(md => ({ body: md.body }));
+      if (data.length) {
+        logger.info(`Creating Apex classes: ${names.join(', ')}...`, { newline: false });
+        conn.tooling.sobject('ApexClass').create(content, (err, res) => {
+          logger.status(err);
+          done(err, res);
+        });
+      } else {
+        done();
+      }
+    });
+  }
+
+  getUrlRewriterMetadata() {
+    const p = path.join(this.rootPath, 'src', 'templates', 'VForceJSUrlRewriter.cls');
+    const body = fs.readFileSync(p, { encoding: 'utf-8' });
+    return { name: 'VForceJSUrlRewriter', body };
+  }
+
+  getControllerMetadata() {
+    const p = path.join(this.rootPath, 'src', 'templates', 'Controller.cls.mustache');
+    let body = fs.readFileSync(p, { encoding: 'utf-8' });
+    body = Mustache.render(body, { apexPrefix });
+    return { name: `${apexPrefix}Controller`, body };
+  }
+
   page(conn, asset, done) {
     logger.info(`Deploying ${apexPrefix}.page... `, { newline: false });
     conn.metadata.upsert('ApexPage', {
       fullName: apexPrefix,
       label: apexPrefix,
-      description: `${apexPrefix} SPA`,
-      apiVersion: '34.0',
+      description: appTitle,
+      apiVersion,
       availableInTouch: true,
       confirmationTokenRequired: false,
       content: new Buffer(asset.source()).toString('base64'),

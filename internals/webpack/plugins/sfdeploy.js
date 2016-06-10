@@ -25,6 +25,10 @@ module.exports = class SalesforceDeployPlugin {
     if (conf.bundle) {
       tasks.push((done) => sfdc.bundle(compilation, conn, done));
     }
+    tasks.push((done) => sfdc.classes(conn, [
+      sfdc.getUrlRewriterMetadata(),
+      sfdc.getControllerMetadata(),
+    ], done));
     if (conf.page && pageAsset) {
       tasks.push((done) => sfdc.page(conn, pageAsset, done));
     }

@@ -12,7 +12,7 @@ global class VForceJSUrlRewriter implements Site.UrlRewriter {
 		 * https://developer.salesforce.com/forums/ForumsMain?id=906F000000099DOIAY
 		 */
 		String path = '';
-		if (pageRef.getUrl().contains('apexremote')) {
+		if (pageRef.getUrl().contains('/apexremote')) {
 			path += '..';
 		}
 		path += Site.getPathPrefix();

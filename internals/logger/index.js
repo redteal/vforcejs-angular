@@ -11,6 +11,7 @@ const consoleTransport = new winston.transports.Console({
   humanReadableUnhandledException: true,
   colorize: true,
   timestamp: false,
+  prettyPrint: true,
 });
 
 const logger = new winston.Logger({

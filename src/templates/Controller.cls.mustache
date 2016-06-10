@@ -1,0 +1,13 @@
+global with sharing class {{ apexPrefix }}Controller {
+
+	@RemoteAction
+	global static Double nextFib(Prev prev) {
+		Double a = prev.a, b = prev.b;
+		return a == null ? 1 : a + b;
+	}
+
+	global class Prev {
+		global Double a;
+		global Double b;
+	}
+}
