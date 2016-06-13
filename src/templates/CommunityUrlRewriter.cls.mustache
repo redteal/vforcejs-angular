@@ -16,26 +16,26 @@ global class {{ apexPrefix }}UrlRewriter implements Site.UrlRewriter {
 		if (url.startsWith('/apexremote')) {
 			return null;
 		}
-        /**
-         * Route primary apex page to the root, Angular routing
-         * handles rewriting "/apex/{{ apexPrefix }}" out of the url
-         */
+		/**
+		 * Route primary apex page to the root, Angular routing
+		 * handles rewriting "/apex/{{ apexPrefix }}" out of the url
+		 */
 		if (url.startsWithIgnoreCase('/{{ apexPrefix }}')) {
 			return new PageReference('../..');
 		}
 		/**
 		 * Do not route standard urls or pages
 		 */
-        if (url.startsWith('/_ui') || url.startsWith('/profilephoto')) {
-            return null;
-        }
+		if (url.startsWith('/_ui') || url.startsWith('/profilephoto')) {
+			return null;
+		}
 		List<ApexPage> pages = [ SELECT Id, Name FROM ApexPage ];
 		for (ApexPage page : pages) {
 			if (url.startsWithIgnoreCase('/' + page.Name)) {
 				return null;
 			}
 		}
-        /** Default */
+		/** Default */
 		return new PageReference('/{{ apexPrefix }}');
 	}
 
