@@ -48,48 +48,30 @@ But for now it is a manual step.
 {
   "appTitle": "<page title of app>",
   "sitePrefix": "<site path prefix; eg. vforcejs>",
-  "apexPrefix": "<prefix of controller, page, and static resource; eg. VForceJS>"
+  "apexPrefix": "<prefix of controller, page, and static resource; eg. VForceJS>",
+  "apiVersion": "<sfdc api version; eg. 35.0>"
 }
 ```
-
-Next steps (of which will hopefully be automated in the future):
-
-1. Create an Apex controller class with the name "(apexPrefix)Controller"
-2. Create your public site with the configured sitePrefix variable
-3. Create an Apex class named "(apexPrefix)UrlRewriter" using the
-   code in `src/templates/UrlRewriter.cls`
-
-Note: A Visualforce page and static resource bundle will be uploaded automatically,
-so they do not need to be created.
 
 ### Development
 
 Run `npm start`
 
-Open your **public** Salesforce site.
+This command will take the following steps:
 
-Webpack will watch for changes and automatically hot-reload the page during
-development.
+1. Opens a connection to the configured org
+2. Opens a public ngrok connection and starts an Express server Webpack middleware
+3. Compiles the bundled app sources
+4. Deploys the bundle
+5. If it does not exist, creates `VForceJSUrlRewriter.cls`
+6. If it does not exist, creates a default `<apexPrefix>Controller.cls`
+7. Deploys the compiled ApexPage named as the configured apexPrefix
 
-**Note** there's a "Next Fib" button that makes a remote action call, and assumes
-there is a "nextFib" `@RemoteAction` method defined in the Apex controller. This
-is only for demonstration purposes.
+Now, open your *public* Salesforce site.
 
-```java
-global with sharing class VForceJSController {
-
-	@RemoteAction
-	global static Double nextFib(Prev prev) {
-		Double a = prev.a, b = prev.b;
-		return a == null ? 1 : a + b;
-	}
-
-	global class Prev {
-		global Double a;
-		global Double b;
-	}
-}
-```
+Webpack will watch for changes related to the app and automatically recompile and
+hot-reload the page, and re-deploy the Visualforce page when necessary. Bundle
+sources will be publicly served from the local Webpack server via ngrok.
 
 ### Production
 
@@ -99,7 +81,6 @@ Run `npm run build`. Builds and deploys page and resource bundle.
 
 Pull requests are welcome! Code should pass tests and the ESLint style guide,
 preferably with no warnings emitted.
-
 
 [style-guide]: https://github.com/johnpapa/angular-styleguide/tree/master/a1
 [Webpack]: http://webpack.github.io

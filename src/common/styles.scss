@@ -1,16 +1,16 @@
-// load bootstrap styles
+/* Bootstrap-Sass */
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 $bootstrap-sass-asset-helper: false;
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
-// load font-awesome styles
+/* FontAwesome */
 $fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome.scss';
 
-// enable css3 angular animations
+/* CSS3 Angular animations */
 @import '~angular-motion/dist/modules/collapse.css';
 
-// animation for angular-strap navbar collapse
+/* Animation for angular-strap navbar collapse */
 .collapse.am-collapse {
   animation-duration: .5s;
   animation-timing-function: ease;
