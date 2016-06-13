@@ -6,7 +6,7 @@ const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
 const Mustache = require('mustache');
 const appConfig = require('../../.jsforce.config.json');
-const { apiVersion, apexPrefix, appTitle } = require('../../.config.json');
+const { apiVersion, apexPrefix, appTitle, isCommunity } = require('../../.config.json');
 
 let logger;
 
@@ -92,9 +92,11 @@ module.exports = class SalesforceDeploy {
   }
 
   getUrlRewriterMetadata() {
-    const p = path.join(this.rootPath, 'src', 'templates', 'VForceJSUrlRewriter.cls');
-    const body = fs.readFileSync(p, { encoding: 'utf-8' });
-    return { name: 'VForceJSUrlRewriter', body };
+    const rewriter = isCommunity ? 'CommunityUrlRewriter' : 'SiteUrlRewriter';
+    const p = path.join(this.rootPath, 'src', 'templates', `${rewriter}.cls.mustache`);
+    let body = fs.readFileSync(p, { encoding: 'utf-8' });
+    body = Mustache.render(body, { apexPrefix });
+    return { name: `${apexPrefix}UrlRewriter`, body };
   }
 
   getControllerMetadata() {
@@ -115,8 +117,8 @@ module.exports = class SalesforceDeploy {
       confirmationTokenRequired: false,
       content: new Buffer(asset.source()).toString('base64'),
     }, (err, res) => {
-      logger.status(err);
-      done(err, res);
+      logger.status(res.errors);
+      done(res.errors, res);
     });
   }
 };

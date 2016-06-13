@@ -49,9 +49,13 @@ But for now it is a manual step.
   "appTitle": "<page title of app>",
   "sitePrefix": "<site path prefix; eg. vforcejs>",
   "apexPrefix": "<prefix of controller, page, and static resource; eg. VForceJS>",
-  "apiVersion": "<sfdc api version; eg. 35.0>"
+  "apiVersion": "<sfdc api version; eg. 35.0>",
+  "isCommunity": true
 }
 ```
+
+Note: If the site is a community, set isCommunity
+to true. If it is a public site, set to false.
 
 ### Development
 
@@ -63,9 +67,12 @@ This command will take the following steps:
 2. Opens a public ngrok connection and starts an Express server Webpack middleware
 3. Compiles the bundled app sources
 4. Deploys the bundle
-5. If it does not exist, creates `VForceJSUrlRewriter.cls`
+5. If it does not exist, creates `<apexPrefix>UrlRewriter.cls`
 6. If it does not exist, creates a default `<apexPrefix>Controller.cls`
 7. Deploys the compiled ApexPage named as the configured apexPrefix
+
+At this point, you will need to configure your site's UrlRewriter, permissions,
+and the landing page. The landing page should be set to `<apexPrefix>.page`.
 
 Now, open your *public* Salesforce site.
 

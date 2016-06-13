@@ -1,0 +1,45 @@
+/**
+ * Route paths to land on the default page.
+ *
+ * http://peterknolle.com/using-angularjs-html-5-mode-in-salesforce-communities/
+ * https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_site_urlRewriter_reference.htm
+ */
+global class {{ apexPrefix }}UrlRewriter implements Site.UrlRewriter {
+
+	global PageReference mapRequestUrl(PageReference pageRef) {
+		System.debug(pageRef.getParameters());
+		String url = pageRef.getUrl();
+		/**
+		 * Fixes issue with remoting in site pages
+		 * https://developer.salesforce.com/forums/ForumsMain?id=906F000000099DOIAY
+		 */
+		if (url.startsWith('/apexremote')) {
+			return null;
+		}
+        /**
+         * Route primary apex page to the root, Angular routing
+         * handles rewriting "/apex/{{ apexPrefix }}" out of the url
+         */
+		if (url.startsWithIgnoreCase('/{{ apexPrefix }}')) {
+			return new PageReference('../..');
+		}
+		/**
+		 * Do not route standard urls or pages
+		 */
+        if (url.startsWith('/_ui') || url.startsWith('/profilephoto')) {
+            return null;
+        }
+		List<ApexPage> pages = [ SELECT Id, Name FROM ApexPage ];
+		for (ApexPage page : pages) {
+			if (url.startsWithIgnoreCase('/' + page.Name)) {
+				return null;
+			}
+		}
+        /** Default */
+		return new PageReference('/{{ apexPrefix }}');
+	}
+
+	global List<PageReference> generateUrlFor(List<PageReference> pageRefs) {
+		return pageRefs;
+	}
+}

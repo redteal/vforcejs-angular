@@ -5,6 +5,7 @@
 doctype xml
 apex:page(
 	controller='#{opts.apexPrefix}Controller'
+	action='{!forwardToLogin}'
 	docType='html-5.0'
 	applyHtmlTag='false'
 	applyBodyTag='false'
@@ -31,7 +32,7 @@ apex:page(
 
 			base(href=opts.baseHref)/
 
-		body(ng-app='app' ng-strict-di='')
+		body(ng-app='app' ng-strict-di='true')
 		
 			header(ui-view='header')
 			.container(ui-view='root' id=opts.appMountId)

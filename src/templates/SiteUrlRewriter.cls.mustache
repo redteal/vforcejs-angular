@@ -4,7 +4,7 @@
  * http://peterknolle.com/using-angularjs-html-5-mode-in-salesforce-communities/
  * https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_site_urlRewriter_reference.htm
  */
-global class VForceJSUrlRewriter implements Site.UrlRewriter {
+global class {{ apexPrefix }}UrlRewriter implements Site.UrlRewriter {
 
 	global PageReference mapRequestUrl(PageReference pageRef) {
 		/**

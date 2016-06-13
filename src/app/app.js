@@ -16,6 +16,15 @@ angular.module('app', [
   'main.routing',
   'about.routing',
 ])
+.run(($rootScope, $state) => {
+  /* eslint-disable angular/on-watch */
+  $rootScope.$on('$stateChangeStart', (evt, to, params) => {
+    if (to.redirectTo) {
+      evt.preventDefault();
+      $state.go(to.redirectTo, params, { location: 'replace' });
+    }
+  });
+})
 .config((
   $urlRouterProvider,
   $stateProvider,
