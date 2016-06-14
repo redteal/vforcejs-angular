@@ -1,6 +1,6 @@
 {
   "name": "vforcejs-angular",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A working template for building a Visualforce+Angular SPA on a Salesforce public site",
   "private": true,
   "scripts": {
