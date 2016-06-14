@@ -1,6 +1,4 @@
 import './';
-
-// salesforce config
 import { apexPrefix } from '../../../.config.json';
 
 export default angular.module('main.routing', ['main'])
@@ -12,6 +10,9 @@ export default angular.module('main.routing', ['main'])
       template: require('./main.html'),
       controller: 'MainController as vm',
     })
+    /* Handle case where logging into a community
+     * routes the user to "/apex/LandingPage"
+     */
     .state('apex', {
       url: `/apex/${apexPrefix}`,
       redirectTo: 'main',

@@ -1,2 +1,4 @@
 parser: babel-eslint
 extends: redteal
+rules:
+  no-param-reassign: "off"

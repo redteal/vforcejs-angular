@@ -29,20 +29,15 @@ Clone this repository, then run install to retrieve dependencies:
 npm install
 ```
 
-### Config
+### Configure
 
-Create the config file. At some point in the future, this will be done through a script.
-But for now it is a manual step.
+1. Configure your Salesforce connections file by running `npm run configure`. This will
+create a `.jsforce.config.json` that stores your credentials. You probably don't want
+to commit this file. Re-run to switch the active connection or create new ones.
 
-*\<root>/.jsforce.config.json*
-```json
-{
-  "loginUrl": "https://login.salesforce.com",
-  "username": "<username>",
-  "password": "<password>",
-  "token": "<security token>"
-}
-```
+2. Create the app's config file. At some point in the future, this will
+be done through a script (as above). But for now it is a manual step.
+
 *\<root>/.config.json*
 ```json
 {

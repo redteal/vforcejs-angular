@@ -20,7 +20,7 @@ apex:page(
 			if files.favicon
 				link(rel='shortcut icon' href=files.favicon)/
 
-			if opts.mobile
+			if opts.mobile || opts.mobile === undefined
 				meta(name='viewport' content='width=device-width, initial-scale=1')/
 
 			if opts.cdn && opts.cdn.css

@@ -12,7 +12,7 @@ module.exports = (config) => {
 
     // list of files/patterns to load in the browser
     files: [{
-      pattern: 'internals/testing/spec.bundle.js',
+      pattern: 'internals/testing/bundle/spec.bundle.js',
       watched: false,
     }],
 
@@ -30,7 +30,7 @@ module.exports = (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'internals/testing/spec.bundle.js': ['webpack', 'sourcemap'],
+      'internals/testing/bundle/spec.bundle.js': ['webpack', 'sourcemap'],
     },
 
     webpack: {

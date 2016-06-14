@@ -54,26 +54,13 @@ module.exports = (url) => require('./webpack.base.babel')({
     new webpack.NoErrorsPlugin(),
 
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'src/app/index.jade',
-      inject: false,
-      title: appTitle,
-      apexPrefix,
-      ngrokurl: `${url}/`,
-      appMountId: 'root',
-      dev: true,
-      mobile: true,
-    }),
-
-    new HtmlWebpackPlugin({
       filename: `${apexPrefix}.page`,
-      template: 'src/app/index.jade',
+      template: 'src/templates/Visualforce.page.jade',
       inject: false,
       title: appTitle,
       apexPrefix,
       baseHref: '{!$Site.Prefix}/',
       dev: true,
-      mobile: true,
     }),
 
     new SalesforceDeployPlugin({

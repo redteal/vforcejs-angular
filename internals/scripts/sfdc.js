@@ -5,10 +5,12 @@ const jsforce = require('jsforce');
 const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
 const Mustache = require('mustache');
-const appConfig = require('../../.jsforce.config.json');
+const { connections } = require('../../.jsforce.config.json');
 const { apiVersion, apexPrefix, appTitle, isCommunity } = require('../../.config.json');
 
 let logger;
+
+const creds = connections.find(c => c.active);
 
 module.exports = class SalesforceDeploy {
   constructor(_logger) {
@@ -18,15 +20,15 @@ module.exports = class SalesforceDeploy {
 
   connect() {
     return new jsforce.Connection({
-      loginUrl: appConfig.loginUrl,
+      loginUrl: creds.loginUrl,
       version: apiVersion,
     });
   }
 
   login(conn, done) {
-    const { username, password, token } = appConfig;
+    const { username, password, securityToken } = creds;
     logger.info(`Logging in as ${username}... `, { newline: false });
-    conn.login(username, password + token, (err, res) => {
+    conn.login(username, password + securityToken, (err, res) => {
       logger.status(err);
       done(err, res);
     });

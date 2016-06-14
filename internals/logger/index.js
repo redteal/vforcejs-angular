@@ -7,6 +7,7 @@ winston.cli();
 
 const consoleTransport = new winston.transports.Console({
   level: 'debug',
+  showLevel: false,
   handleExceptions: true,
   humanReadableUnhandledException: true,
   colorize: true,

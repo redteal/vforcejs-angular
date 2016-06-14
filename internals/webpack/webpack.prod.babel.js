@@ -13,7 +13,7 @@ const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
 
-const { sitePrefix, appTitle, apexPrefix } = require('../../.config.json');
+const { sitePrefix, appTitle, apexPrefix, cdn } = require('../../.config.json');
 const pkg = require('../../package.json');
 
 const cssLoaderOpts = {
@@ -86,18 +86,18 @@ module.exports = require('./webpack.base.babel')({
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       filename: `${apexPrefix}.page`,
-      template: 'src/app/index.jade',
+      template: 'src/templates/Visualforce.page.jade',
       inject: false,
       title: appTitle,
       apexPrefix,
       baseHref: '{!$Site.Prefix}/',
-      cdn: pkg.cdnDependencies,
-      mobile: true,
+      cdn: cdn || {},
     }),
 
     // Extract the CSS into a seperate file
     new ExtractTextPlugin('css/[name].[chunkhash].css'),
 
+    // Deploy assets to the configured Salesforce org
     new SalesforceDeployPlugin(),
   ],
   externals,
